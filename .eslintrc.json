@@ -1,0 +1,33 @@
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module"
+	},
+	"plugins": ["@typescript-eslint"],
+	"rules": {
+		"arrow-parens": ["error", "as-needed"],
+		"arrow-body-style": "off",
+		"comma-dangle": ["error", "never"],
+		"eol-last": ["error", "never"],
+		"import/no-extraneous-dependencies": "off",
+		"indent": ["error", "tab"],
+		"lines-between-class-members": "off",
+		"linebreak-style": ["error", "unix"],
+		"max-len": ["error", { "code": 150, "tabWidth": 4 }],
+		"one-var": "off",
+		"no-tabs": ["error", { "allowIndentationTabs": true }],
+		"no-shadow": "off",
+		"no-underscore-dangle": "off",
+		"no-unused-expressions": ["error", { "allowShortCircuit": true }],
+		"no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+		"one-var-declaration-per-line": "off",
+		"prefer-const": "off"
+	},
+	"ignorePatterns": [
+		"out",
+		"dist",
+		"**/*.d.ts"
+	]
+}
