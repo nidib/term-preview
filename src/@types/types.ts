@@ -10,7 +10,7 @@ export interface ExtensionConfig {
 	language: string;
 	path: string | null;
 	showFlag: boolean;
-	watchFiles: boolean;
+	watchForChanges: boolean;
 }
 
 export type Map<T> = { [key: string]: T };

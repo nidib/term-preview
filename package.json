@@ -7,7 +7,7 @@
 		"type": "git",
 		"url": "https://github.com/nidib/term-preview"
 	},
-	"version": "0.0.1",
+	"version": "0.0.1-alpha",
 	"engines": {
 		"vscode": "^1.63.0"
 	},
@@ -53,7 +53,7 @@
 					"markdownDescription": "Whether or not to display the language flag",
 					"default": false
 				},
-				"termPreview.watchFile": {
+				"termPreview.watchForChanges": {
 					"type": "boolean",
 					"markdownDescription": "Whether or not to keep watching for changes on your file",
 					"default": false

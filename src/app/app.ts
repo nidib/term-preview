@@ -70,7 +70,7 @@ class App {
 			this.terms = this.getTermsFromFile();
 			termHover = new TermHover(this.getTerms, showFlag, language);
 
-			if (this.config.watchFiles) {
+			if (this.config.watchForChanges) {
 				fs.watchFile(path, this.handleFileChange);
 			}
 
