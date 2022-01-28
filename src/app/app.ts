@@ -2,55 +2,57 @@ import * as fs from 'fs';
 import * as vscode from 'vscode';
 import { ExtensionConfig, Map } from '../@types/types';
 import { termsfileParserRegex } from '../utils/constants/regexConstants';
+import { getFilePaths } from '../utils/helpers/fileHelpers';
 import getInitialConfig from '../utils/helpers/getConfig';
 import TermHover from './termHover';
+
+const APP_STATUS_BAR_ID = 'app-name_status-bar';
 
 class App {
 	config: ExtensionConfig;
 	statusBarItem: vscode.StatusBarItem;
-	terms: Map<string>;
+	terms: Map<Map<string>>;
 
 	constructor() {
 		this.config = getInitialConfig();
 		this.statusBarItem = this.getInitialStatusBarItem();
 		this.terms = {};
 
-		this.getTerms = this.getTerms.bind(this);
-		this.handleFileChange = this.handleFileChange.bind(this);
+		this.getTranslationsByTerm = this.getTranslationsByTerm.bind(this);
 
 		this.statusBarItem.show();
 	}
 
-	getTerms() {
-		return this.terms;
-	}
-
 	getInitialStatusBarItem() {
-		return vscode.window.createStatusBarItem('app-name_status-bar', vscode.StatusBarAlignment.Right);
+		return vscode.window.createStatusBarItem(APP_STATUS_BAR_ID, vscode.StatusBarAlignment.Right);
 	}
 
-	getTermsFromFile(): Map<string> {
-		const { path } = this.config;
+	getTranslationsByTerm(term: string): string[] {
+		const { languages } = this.config;
+
+		return languages.map(language => this.terms[language][term]);
+	}
+
+	getTermsFromFile(path: string): Map<string> {
+		let terms: Map<string> = {};
 		let file: string;
 		let matchedFileTerms: IterableIterator<RegExpMatchArray>;
 
 		try {
-			file = fs.readFileSync(path as string, 'utf-8');
+			file = fs.readFileSync(path, 'utf-8');
 			matchedFileTerms = file.matchAll(termsfileParserRegex);
 
 			Array.from(matchedFileTerms).forEach(match => {
 				const term = match[1];
 				const value = match[2];
 
-				this.terms[term] = value;
+				terms[term] = value;
 			});
-		} catch (e) {
-			throw new Error('Could not find or parse the specified file');
-		} finally {
-			this.setStatusBarText('Terms file loaded!', 'Your terms file seems to be loaded and parsed. You can now hover over a term!', 'check');
+		} catch (_e) {
+			throw new Error(`Could not find or parse ${path}`);
 		}
 
-		return this.terms;
+		return terms;
 	}
 
 	setStatusBarText(text: string, tooltip:string, icon: string ) {
@@ -58,28 +60,29 @@ class App {
 		this.statusBarItem.text = `$(${icon}) ${text}`;
 	}
 
-	handleFileChange(): void {
-		this.terms = this.getTermsFromFile();
-	}
-	
 	run(context: vscode.ExtensionContext) {
-		const { path, showFlag, language } = this.config;
+		const { enabled, languages } = this.config;
+		let files: string[];
 		let termHover, disposableHover;
 		
-		if (path) {
-			this.terms = this.getTermsFromFile();
-			termHover = new TermHover(this.getTerms, showFlag, language);
-
-			if (this.config.watchForChanges) {
-				fs.watchFile(path, this.handleFileChange);
-			}
-
-			disposableHover = vscode.languages.registerHoverProvider('*', termHover);
-
-			context.subscriptions.push(disposableHover);
-		} else {
-			throw new Error('You must provide a the global and relative path to your terms file. Ctrl + , to set it up');
+		if (!enabled) {
+			return;
 		}
+
+		files = getFilePaths();
+
+		files.forEach((file, index) => {
+			const language = languages[index];
+
+			this.terms[language] = this.getTermsFromFile(file);
+		});
+
+		this.setStatusBarText('Terms file(s) loaded!', 'Your file(s) seem(s) to be loaded and parsed', 'check');
+
+		termHover = new TermHover(this.getTranslationsByTerm);
+		disposableHover = vscode.languages.registerHoverProvider('*', termHover);
+
+		context.subscriptions.push(disposableHover);
 	}
 }
 

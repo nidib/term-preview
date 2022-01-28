@@ -1,48 +1,40 @@
 import * as vscode from 'vscode';
-import { ITermHover, MapCallback } from '../@types/types';
-import flags from '../utils/constants/flags';
+import { Callback, ITermHover } from '../@types/types';
 import { termRegex } from '../utils/constants/regexConstants';
 
 class TermHover implements ITermHover {
-	getTerms;
-	showFlag;
-	language;
+	getTranslationsByTerm;
 
-	constructor(getTerms: MapCallback<string>, showFlag: boolean, language: string) {
-		this.getTerms = getTerms;
-		this.showFlag = showFlag;
-		this.language = language;
-	}
-
-	private getTranslation(translation: string): string {
-		if (this.showFlag) {
-			return `${flags[this.language]} ${translation}`;
-		}
-
-		return translation;
+	constructor(getTranslationsByTerm: Callback<string, string[]>) {
+		this.getTranslationsByTerm = getTranslationsByTerm;
 	}
 
 	provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.Hover> {
 		const range = document.getWordRangeAtPosition(position);
 		const word = document.getText(range);
 		let isTerm = termRegex.test(word);
-		let translation, markdownTranslation;
-		let terms;
+		let translations: string[];
+		let markdownTranslations: vscode.MarkdownString[] = [];
 
-		if (isTerm) {
-			terms = this.getTerms();
-			translation = terms[word];
-	
-			if (translation) {
-				translation = this.getTranslation(translation);
-				markdownTranslation = new vscode.MarkdownString(translation);
-				markdownTranslation.supportHtml = true;
-
-				return new vscode.Hover(markdownTranslation);
-			}
+		if (!isTerm) {
+			return null;
 		}
 
-		return null;
+		translations = this.getTranslationsByTerm(word);
+
+		if (!translations.length) {
+			return null;
+		}
+
+		markdownTranslations = translations.map(translation => {
+			const curr = new vscode.MarkdownString(translation);
+
+			curr.supportHtml = true;
+
+			return curr;
+		});
+
+		return new vscode.Hover(markdownTranslations);
 	}
 }
 

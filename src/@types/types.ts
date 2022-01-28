@@ -1,18 +1,15 @@
 import * as vscode from 'vscode';
 
 export interface ITermHover extends vscode.HoverProvider {
-	getTerms: MapCallback<string>;
-	language: string;
-	showFlag: boolean;
+	getTranslationsByTerm: Callback<string, string[]>;
 }
 
 export interface ExtensionConfig {
-	language: string;
-	path: string | null;
-	showFlag: boolean;
-	watchForChanges: boolean;
+	enabled: boolean,
+	filePath: string;
+	languages: string[];
 }
 
 export type Map<T> = { [key: string]: T };
 
-export type MapCallback<T> = () => Map<T>;
+export type Callback<I, T> = (_arg0: I) => T;
