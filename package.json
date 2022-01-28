@@ -3,11 +3,18 @@
 	"displayName": "Term Preview",
 	"description": "Preview your project's international terms",
 	"publisher": "richard-bidin",
+	"author": {
+		"name": "Richard Bidin"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/nidib/term-preview"
 	},
-	"version": "0.0.1-alpha",
+	"bugs": {
+		"url": "https://github.com/nidib/term-preview/issues",
+		"email": "nidibdev@outlook.com"
+	},
+	"version": "0.0.5-alpha",
 	"engines": {
 		"vscode": "^1.63.0"
 	},
@@ -18,45 +25,29 @@
 		"configuration": {
 			"title": "Term Preview",
 			"properties": {
-				"termPreview.absolutePathToProjectRoot": {
-					"type": "string",
-					"markdownDescription": "The absolute path to your project root",
-					"default": ""
-				},
-				"termPreview.innerPathToTermsRoot": {
-					"type": "string",
-					"markdownDescription": "The path to the terms folder relative to the project root",
-					"default": ""
-				},
-				"termPreview.filePrefix": {
-					"type": "string",
-					"markdownDescription": "The file prefix",
-					"default": ""
-				},
-				"termPreview.language": {
-					"type": "string",
-					"markdownDescription": "Goes in between prefix, and suffix",
-					"default": "en-us"
-				},
-				"termPreview.fileSuffix": {
-					"type": "string",
-					"markdownDescription": "The file suffix including the extension",
-					"default": ""
-				},
-				"termPreview.fileSeparator": {
-					"type": "string",
-					"markdownDescription": "Goes in between prefix, language, and suffix",
-					"default": "."
-				},
-				"termPreview.showFlag": {
+				"termPreview.enabled": {
+					"order": 0,
 					"type": "boolean",
-					"markdownDescription": "Whether or not to display the language flag",
+					"markdownDescription": "Enables the term preview on hover",
 					"default": false
 				},
-				"termPreview.watchForChanges": {
-					"type": "boolean",
-					"markdownDescription": "Whether or not to keep watching for changes on your file",
-					"default": false
+				"termPreview.absolutePathToTermsRoot": {
+					"type": "string",
+					"markdownDescription": "The absolute path to your terms root",
+					"default": ""
+				},
+				"termPreview.file": {
+					"type": "string",
+					"markdownDescription": "Your file name. `{{LANGUAGE}}` is the placeholder for the language",
+					"default": ""
+				},
+				"termPreview.languages": {
+					"type":"array",
+					"items": {
+						"type": "string"
+					},
+					"markdownDescription": "The languages you want your terms translated to (must match file names)",
+					"default": ["en-us"]
 				}
 			}
 		}
