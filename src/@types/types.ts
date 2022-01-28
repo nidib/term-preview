@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 
 export interface ITermHover extends vscode.HoverProvider {
 	getTranslationsByTerm: Callback<string, string[]>;
-	languages: string[];
 }
 
 export interface ExtensionConfig {

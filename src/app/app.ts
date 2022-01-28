@@ -79,7 +79,7 @@ class App {
 
 		this.setStatusBarText('Terms file(s) loaded!', 'Your file(s) seem(s) to be loaded and parsed', 'check');
 
-		termHover = new TermHover(this.getTranslationsByTerm, languages);
+		termHover = new TermHover(this.getTranslationsByTerm);
 		disposableHover = vscode.languages.registerHoverProvider('*', termHover);
 
 		context.subscriptions.push(disposableHover);

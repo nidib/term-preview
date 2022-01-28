@@ -4,11 +4,9 @@ import { termRegex } from '../utils/constants/regexConstants';
 
 class TermHover implements ITermHover {
 	getTranslationsByTerm;
-	languages;
 
-	constructor(getTranslationsByTerm: Callback<string, string[]>, languages: string[]) {
+	constructor(getTranslationsByTerm: Callback<string, string[]>) {
 		this.getTranslationsByTerm = getTranslationsByTerm;
-		this.languages = languages;
 	}
 
 	provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.Hover> {
