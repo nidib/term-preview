@@ -14,22 +14,31 @@
 		"url": "https://github.com/nidib/term-preview/issues",
 		"email": "nidibdev@outlook.com"
 	},
-	"version": "0.0.5-alpha",
+	"version": "0.1.0-beta",
 	"engines": {
 		"vscode": "^1.63.0"
 	},
 	"categories": ["Other"],
-	"activationEvents": ["*"],
+	"activationEvents": [
+		"onCommand:term-preview.loadTerms",
+		"onStartupFinished"
+	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"commands": [
+			{
+				"command": "term-preview.loadTerms",
+				"title": "Load terms"
+			}
+		],
 		"configuration": {
 			"title": "Term Preview",
 			"properties": {
 				"termPreview.enabled": {
 					"order": 0,
 					"type": "boolean",
-					"markdownDescription": "Enables the term preview on hover",
-					"default": false
+					"markdownDescription": "Enables the extension",
+					"default": true
 				},
 				"termPreview.absolutePathToTermsRoot": {
 					"type": "string",
@@ -38,7 +47,7 @@
 				},
 				"termPreview.file": {
 					"type": "string",
-					"markdownDescription": "Your file name. `{{LANGUAGE}}` is the placeholder for the language",
+					"markdownDescription": "Your file name. `{{LANGUAGE}}` will be replaced by each of the selected languages",
 					"default": ""
 				},
 				"termPreview.languages": {
@@ -46,7 +55,7 @@
 					"items": {
 						"type": "string"
 					},
-					"markdownDescription": "The languages you want your terms translated to (must match file names)",
+					"markdownDescription": "The languages you want your terms translated to (must match file name)",
 					"default": ["en-us"]
 				}
 			}

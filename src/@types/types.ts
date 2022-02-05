@@ -6,6 +6,7 @@ export interface ITermHover extends vscode.HoverProvider {
 
 export interface ExtensionConfig {
 	enabled: boolean,
+	file: string,
 	filePath: string;
 	languages: string[];
 }

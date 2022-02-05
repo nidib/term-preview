@@ -11,7 +11,7 @@ function getInitialConfig(): ExtensionConfig {
 	const enabled = appConfig.get('enabled', configDefaults.ENABLED);
 	const filePath = nodePath.join(abs, file);
 
-	return { enabled, filePath, languages };
+	return { enabled, filePath, languages, file };
 }
 
 export default getInitialConfig;
