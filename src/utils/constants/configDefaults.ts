@@ -1,6 +1,6 @@
 const configDefaults = {
 	ABS_PATH: '',
-	ENABLED: false,
+	ENABLED: true,
 	FILE: '',
 	LANGUAGES: ['en-us']
 };
