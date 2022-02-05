@@ -14,7 +14,7 @@
 		"url": "https://github.com/nidib/term-preview/issues",
 		"email": "nidibdev@outlook.com"
 	},
-	"version": "0.0.5-alpha",
+	"version": "0.1.0-beta",
 	"engines": {
 		"vscode": "^1.63.0"
 	},
