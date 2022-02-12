@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.0.0
+* Parses `.po` as default
+* Better feedback through status bar
+
 ## Version 0.1.0-beta
 * Simplifies configuration
 * Update terms whenever the configuration is changed
