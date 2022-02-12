@@ -1,11 +1,11 @@
 &#xa0;
 <h1 align="center">Terms Preview | VS Code Extension</h1>
 <p align="center">
-  <a href="#about">About</a> &#xa0; | &#xa0; 
-  <a href="#getting-started">Getting started</a> &#xa0; | &#xa0;
-  <a href="#upcoming-features">Upcoming features</a> &#xa0; | &#xa0;
-  <a href="#how-to-contribute">How to contribute</a> &#xa0; | &#xa0;
-  <a href="#license">License</a> &#xa0;
+  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-getting-started">Getting started</a> &#xa0; | &#xa0;
+  <a href="#rocket-upcoming-features">Upcoming features</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-how-to-contribute">How to contribute</a> &#xa0; | &#xa0;
+  <a href="#memo-license">License</a> &#xa0;
 </p>
 &#xa0;
 
@@ -46,6 +46,6 @@ First of all, thank your for being interesting on improving this project! Now se
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
-Made with :heart: by Richard Bidin
-
+&#xa0;
+<p align="center">Made with :heart: by Richard Bidin</p>
 &#xa0;
