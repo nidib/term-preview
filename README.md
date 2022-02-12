@@ -1,4 +1,3 @@
-&#xa0;
 <h1 align="center">Terms Preview | VS Code Extension</h1>
 <p align="center">
   <a href="#-about">About</a> &#xa0; | &#xa0; 
@@ -14,7 +13,7 @@
 ## 🎯 About
 Tired of having to lookup your terms on the web every time? Then this extension will be pretty handy!</br>
 Simply install it and configure it to see them without ever leaving the IDE.
-</br></br>
+</br>
 
 ## ✨ Getting started
 After installing it, you basically need to let this extension know of three things: </br>
