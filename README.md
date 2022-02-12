@@ -15,6 +15,7 @@
 Tired of having to lookup your terms on the web every time? Then this extension will be pretty handy!</br>
 Simply install it and configure it to see them without ever leaving the IDE.
 </br>
+
 ## ✨ Getting started
 
 After installing it, you basically need to let this extension know of three things: </br>
