@@ -1,14 +1,14 @@
 &#xa0;
 <h1 align="center">Terms Preview | VS Code Extension</h1>
 <p align="center">
-  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
-  <a href="#sparkles-getting-started">Getting started</a> &#xa0; | &#xa0;
-  <a href="#rocket-upcoming-features">Upcoming features</a> &#xa0; | &#xa0;
-  <a href="#white_check_mark-how-to-contribute">How to contribute</a> &#xa0; | &#xa0;
+  <a href="#-about">About</a> &#xa0; | &#xa0; 
+  <a href="#-getting-started">Getting started</a> &#xa0; | &#xa0;
+  <a href="#-upcoming-features">Upcoming features</a> &#xa0; | &#xa0;
+  <a href="#-how-to-contribute">How to contribute</a> &#xa0; | &#xa0;
   <a href="#memo-license">License</a> &#xa0;
 </p>
 &#xa0;
-<img alt="Extension screenshot" src="" />
+<img alt="Extension screenshot" src="https://github.com/nidib/term-preview/blob/v1.0.0/screenshot.png?raw=true" />
 &#xa0;
 
 ## 🎯 About
