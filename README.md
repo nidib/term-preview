@@ -6,10 +6,10 @@
   <a href="#-upcoming-features">Upcoming features</a> &#xa0; | &#xa0;
   <a href="#-how-to-contribute">How to contribute</a> &#xa0; | &#xa0;
   <a href="#memo-license">License</a> &#xa0;| &#xa0;
-  <a href="#memo-license">Marketplace</a> &#xa0;
+  <a href="https://marketplace.visualstudio.com/items?itemName=richard-bidin.term-preview">Marketplace</a> &#xa0;
 </p>
 &#xa0;
-<img alt="Extension screenshot" src="https://github.com/nidib/term-preview/blob/v1.0.0/screenshot.png?raw=true" />
+<img alt="Extension screenshot" src="https://github.com/nidib/term-preview/blob/master/screenshot.png?raw=true" />
 
 ## 🎯 About
 Tired of having to lookup your terms on the web every time? Then this extension will be pretty handy!</br>
