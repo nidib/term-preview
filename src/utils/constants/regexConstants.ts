@@ -1,3 +1,3 @@
 export const termRegex = /^[0-9]{6}$/;
 
-export const termsfileParserRegex = /^\$str\[([0-9]{6})]="(.*?)";$/gm;
+export const poRegex = /msgid\s*"([0-9]+)"[\r\n]msgstr\s*"(.*)"/g;

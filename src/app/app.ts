@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as vscode from 'vscode';
 import { ExtensionConfig, Map } from '../@types/types';
-import { termsfileParserRegex } from '../utils/constants/regexConstants';
+import { poRegex } from '../utils/constants/regexConstants';
 import { getFiles } from '../utils/helpers/fileHelpers';
 import getInitialConfig from '../utils/helpers/getConfig';
 import TermHover from './termHover';
@@ -18,7 +18,14 @@ class App {
 		this.statusBarItem = this.getInitialStatusBarItem();
 		this.terms = {};
 
+		this.statusBarItem.show();
+
 		this.getTranslationsByTerm = this.getTranslationsByTerm.bind(this);
+		this.handleFiles = this.handleFiles.bind(this);
+	}
+
+	setStatusBarText(text: string, icon: string): void {
+		this.statusBarItem.text = `$(${icon}) ${text}`;
 	}
 
 	hasMinimumConfigurationsSet(): boolean {
@@ -53,41 +60,40 @@ class App {
 
 		try {
 			file = fs.readFileSync(path, 'utf-8');
-			matchedFileTerms = file.matchAll(termsfileParserRegex);
+			matchedFileTerms = file.matchAll(poRegex);
 
 			Array.from(matchedFileTerms).forEach(match => terms[match[1]] = match[2]);
 		} catch (err) {
-			throw new Error(`Could not find or parse ${path}`);
+			this.setStatusBarText('Could not load terms', 'close');
+
+			throw new Error(`Could not find ${path}`);
 		}
 
 		return terms;
 	}
 
-	setStatusBarText(text: string, tooltip:string, icon: string) {
-		this.statusBarItem.tooltip = tooltip;
-		this.statusBarItem.text = `$(${icon}) ${text}`;
-
-		this.statusBarItem.show();
-	}
-
-	run(): vscode.Disposable | undefined { 
-		this.config = getInitialConfig();
-		this.terms = {};
-
-		this.statusBarItem.hide();
-
-		if (!this.hasMinimumConfigurationsSet()) {
-			return;
-		}
-
+	handleFiles(): void {
 		getFiles().forEach((file, index) => {
 			const language = this.config.languages[index];
 
 			this.terms[language] = this.getTermsFromFile(file);
 		});
 
-		this.setStatusBarText('Terms file(s) loaded!', 'Your file(s) seem(s) to be loaded and parsed', 'check');
+		this.setStatusBarText('Terms file(s) loaded!', 'check');
+	}
+
+	run(): vscode.Disposable | undefined { 
+		this.config = getInitialConfig();
+		this.terms = {};
+
+		if (!this.hasMinimumConfigurationsSet()) {
+			return;
+		}
+
+		this.setStatusBarText('Loading terms', 'sync~spin');
 		
+		setTimeout(this.handleFiles, 2000);
+
 		return vscode.languages.registerHoverProvider('*', new TermHover(this.getTranslationsByTerm));
 	}
 }

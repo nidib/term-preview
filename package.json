@@ -14,7 +14,7 @@
 		"url": "https://github.com/nidib/term-preview/issues",
 		"email": "nidibdev@outlook.com"
 	},
-	"version": "0.1.0-beta",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.63.0"
 	},
@@ -41,16 +41,19 @@
 					"default": true
 				},
 				"termPreview.absolutePathToTermsRoot": {
+					"order": 1,
 					"type": "string",
 					"markdownDescription": "The absolute path to your terms root",
 					"default": ""
 				},
 				"termPreview.file": {
+					"order": 2,
 					"type": "string",
-					"markdownDescription": "Your file name. `{{LANGUAGE}}` will be replaced by each of the selected languages",
+					"markdownDescription": "Your file name. `{{LANGUAGE}}` will be automatically replaced by each of the selected languages",
 					"default": ""
 				},
 				"termPreview.languages": {
+					"order": 3,
 					"type":"array",
 					"items": {
 						"type": "string"
