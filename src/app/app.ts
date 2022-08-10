@@ -67,8 +67,6 @@ class App {
 			console.error(err);
 
 			this.setStatusBarText('Could not load terms', 'close');
-
-			throw new Error(`Could not find ${path}`);
 		}
 
 		return terms;
