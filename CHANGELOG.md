@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 1.0.4
+* Logs out original error messages
+
 ## Version 1.0.0
 * Parses `.po` as default
 * Better feedback through status bar
