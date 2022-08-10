@@ -64,6 +64,8 @@ class App {
 
 			Array.from(matchedFileTerms).forEach(match => terms[match[1]] = match[2]);
 		} catch (err) {
+			console.error(err);
+
 			this.setStatusBarText('Could not load terms', 'close');
 
 			throw new Error(`Could not find ${path}`);
